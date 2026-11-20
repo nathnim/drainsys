@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Công trình thoát nước trên đường ô tô – mô hình 3D</title>
+<meta name="description" content="Mô hình 3D tương tác các công trình thoát nước trên đường ô tô – TS. Đặng Minh Tân, Bộ môn Đường bộ – Sân bay, Trường ĐH Giao thông Vận tải">
+<style>
+  html,body{margin:0;height:100%;background:#1c3a4f;overflow:hidden}
+  iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
+  #msg{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font:15px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<div id="msg">Đang tải…</div>
+<script>
+  // ====== DÁN ĐƯỜNG DẪN WEB APP APPS SCRIPT (kết thúc bằng /exec) VÀO ĐÂY ======
+    const APP_URL = 'https://script.google.com/macros/s/AKfycbynGF1U-kbQy4gh6XLuVbCH6mneMinxh7ubwBQGiAfnR8ddRlLKVFkO2carl-wEUyUo/exec';
+  // ============================================================================
+
+  // Chuyển tiếp tham số ?m=... để mở thẳng một mô hình, ví dụ: .../thoat-nuoc-3d/?m=t5
+  const m = new URLSearchParams(location.search).get('m') || location.hash.slice(1);
+  const src = APP_URL + (m && /^[a-z0-9]{1,8}$/.test(m) ? '?m=' + m : '');
+  const f = document.createElement('iframe');
+  f.src = src; f.allow = 'fullscreen'; f.title = document.title;
+  f.onload = () => document.getElementById('msg').remove();
+  document.body.appendChild(f);
+</script>
+</body>
+</html>
